@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "personal-linux-mcp"
+version = "0.1.0"
+description = "Personal multi-server Linux MCP gateway over SSH"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = [
+  "mcp>=2,<3",
+  "asyncssh>=2.21,<3",
+  "PyYAML>=6,<7",
+  "pydantic>=2.12,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<9",
+  "pytest-asyncio>=1,<2",
+]
+
+[project.scripts]
+personal-linux-mcp = "personal_linux_mcp.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-q"
